@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Core\Domains\" />
-    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
 </Project>
