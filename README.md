@@ -27,5 +27,5 @@ Criamos a interface IPaymentServiceFactory que tem por objetivo retornar o servi
 Em seguida implementamos a interface no service PaymentServiceFactory, sendo assim, o PaymentServiceFactory baseado no PaymentMethod é que vai retornar o serviço específico para processar o pagamento.
 Por fim, na OrdersController, adicionamos a rota "withFactoryMethod" para processar o pagamento com a implementação do DesignPatter Factory Method do tipo Creational.
 	
-#Observações Gerais
+# Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
