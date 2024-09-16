@@ -1,8 +1,8 @@
 ﻿using DesignPatterns.Creational.Application.Models;
-using Microsoft.AspNetCore.Mvc;
 using DesignPatterns.Creational.Core.Enums;
+using DesignPatterns.Creational.Infrastructure.Orders;
 using DesignPatterns.Creational.Infrastructure.Payments;
-using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DesignPatterns.Creational.Controllers
 {
@@ -42,6 +42,28 @@ namespace DesignPatterns.Creational.Controllers
         {
             var paymentService = _paymentServiceFactory.GetService(inputModel.PaymentInfo.PaymentMethod);
             paymentService.Process(inputModel);
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        [Route("processOrderWithAbstractFactory")]
+        public IActionResult ProcessOrderWithAbstractFactory([FromServices] InternationalOrderAbstractFactory internationalOrderAbstractFactory, [FromServices] NationalOrderAbstractFactory nationalOrderAbstractFactory, OrderInputModel model)
+        {
+            IOrderAbstractFactory orderAbstractFactory;
+
+            if (model.IsInternational.HasValue)
+                orderAbstractFactory = internationalOrderAbstractFactory;
+            else
+                orderAbstractFactory = nationalOrderAbstractFactory;
+
+            orderAbstractFactory
+                .GetPaymentService(model.PaymentInfo.PaymentMethod)
+                .Process(model);
+
+            orderAbstractFactory
+                .GetDeliveryService()
+                .Deliver(model);
 
             return NoContent();
         }
