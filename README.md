@@ -18,7 +18,9 @@ Dependendo da forma de pagamento o direcionamento do processamento será distint
 No exemplo de controller sem a correção, o código é complexo e crescendo a cada nova implementação de forma de pagamento.
 
 O que foi feito para resolver o problema hipotético?
-
+Criamos a classe IPaymentServiceFactory contendo o contrato do método GetService que retorna a interface IPaymentService.
+Na implementação da classe IPaymentServiceFactory, injetamos os serviços de CreditCardService e PaymentSlipService e de acordo com o tipo da forma de pagamento, retornaremos o serviço correspondente.
+Os dois serviços (CreditCard e PaymentSlip) possuem sua própria interface (IPaymentService) e suas próprias implementações do método Process.
 
 # Design Pattern - Abstract Factory
 Problema Hipotético:
@@ -33,7 +35,9 @@ A ideia consiste em implementar o Abstract Factory para realizar a implementaç�
 	Objeto do Serviço de Envio;
 
 O que foi feito para resolver o problema hipotético?
-
+Criamos a classe IOrderAbstractFactory contendo o contrato para dois métodos que retornarão os serviços de pagamento e de entrega (IPaymentService e IDeliveryService).
+Cada serviço que será retornado, possui sua própria interface e implementações separadas, fazendo com que o cliente não possua acesso a implementação.
+Nesta solução estamos utilizando o Abstract Factory para retornar o conjunto de objetos (PaymentService e DeliveryService) e para cada service, temos a implementação do Factory Method.
 
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
