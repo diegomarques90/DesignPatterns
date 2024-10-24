@@ -39,9 +39,20 @@ Criamos a classe IOrderAbstractFactory contendo o contrato para dois métodos qu
 Cada serviço que será retornado, possui sua própria interface e implementações separadas, fazendo com que o cliente não possua acesso a implementação.
 Nesta solução estamos utilizando o Abstract Factory para retornar o conjunto de objetos (PaymentService e DeliveryService) e para cada service, temos a implementação do Factory Method.
 
+# Design Pattern - Builder
+Problema Hipotético:
+	Dado o fato que a Startup de E-Commerce possui a necessidade da geração de boletos e que cada boleto possuíra suas próprias características, sendo:
+		Nosso número, código do cedente, cedente, pagador, data de vencimento, data de emissão e entre outras;
+	A construção deste objeto Boleto, possui bastantes condicionais e variações, portanto, o ideal é utilizarmos o padrão builder para organizar a construção do objeto por etapas.
+		
+O que foi feito para resolver o problema hipotético?
+	Criamos a classe PaymentSlipBuilder e implementamos o padrão builder, criando os métodos que farão o preenchimento das informações por etapas.
+	Em seguida, instânciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
+
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
 #Fontes
 Curso: Formação arquitetura de software - LuisDev.
 Livro: Padrões de projeto - Soluções reutilizáveis de software orientado a objetos;
+Artigos: Refactoring Guru - https://refactoring.guru/pt-br/design-patterns
