@@ -49,6 +49,15 @@ O que foi feito para resolver o problema hipotético?
 	Criamos a classe PaymentSlipBuilder e implementamos o padrão builder, criando os métodos que farão o preenchimento das informações por etapas.
 	Em seguida, instânciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
 
+# Design Pattern - Builder
+Problema Hipotético:
+	Dado o fato que a Startup de E-Commerce possui a necessidade de gerar um novo pedido à partir de um outro pedido já realizado anteriormente.
+
+O que foi feito para resolver o problema hipotético?
+	Criamos a rota CloneOrderById, a qual, recebe o id do pedido que deverá ser clonado, como o projeto é voltado para a implementação de exemplos dos patterns, por isso, não temos a real implementação de um serviço para fazer a busca por id, fiz a implementação do padrão builder para a criação do objeto OrderInputModel.
+	Utilizo o OrderBuilder para criar um objeto OrderInputModel para poder realizar o clone do objeto chamando o método Clone.
+	Não fiz a implementação da Interface na mão, pois, no c# já temos a disponibilização da interface ICloneable, portanto, para implementar o padrão builder, apenas incluí a herança da interface ICloneable na classe OrderInputModel e implementei a clonagem do objeto no método Clone.
+	
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 

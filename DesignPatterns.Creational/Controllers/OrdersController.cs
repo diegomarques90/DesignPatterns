@@ -1,6 +1,7 @@
 ﻿using DesignPatterns.Creational.Application.Models;
 using DesignPatterns.Creational.Core.Enums;
 using DesignPatterns.Creational.Infrastructure.Orders;
+using DesignPatterns.Creational.Infrastructure.Orders.Models;
 using DesignPatterns.Creational.Infrastructure.Payments;
 using Microsoft.AspNetCore.Mvc;
 
@@ -66,6 +67,23 @@ namespace DesignPatterns.Creational.Controllers
                 .Deliver(model);
 
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("cloneOrderById")]
+        public IActionResult CloneOrderById(Guid orderToCloneId)
+        {
+            //utilizando o builder para criar um objeto OrderInputModel.
+            //Em um cenário real, teríamos a chamada de um serviço que faria a busca da order pelo Id informado na requisição
+            var order = new OrderBuilder()
+                .WithCustomer()
+                .WithItems()
+                .IsInternational(false)
+                .Build();
+            
+            var clonedOrder = order.Clone();
+
+            return Ok(clonedOrder);
         }
     }
 }
