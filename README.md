@@ -49,7 +49,7 @@ O que foi feito para resolver o problema hipotético?
 	Criamos a classe PaymentSlipBuilder e implementamos o padrão builder, criando os métodos que farão o preenchimento das informações por etapas.
 	Em seguida, instânciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
 
-# Design Pattern - Builder
+# Design Pattern - Prototype
 Problema Hipotético:
 	Dado o fato que a Startup de E-Commerce possui a necessidade de gerar um novo pedido à partir de um outro pedido já realizado anteriormente.
 
