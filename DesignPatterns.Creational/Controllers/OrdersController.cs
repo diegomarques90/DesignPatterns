@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Creational.Application.Models;
+﻿using DesignPatterns.Creational.Application.Configuration;
+using DesignPatterns.Creational.Application.Models;
 using DesignPatterns.Creational.Core.Enums;
 using DesignPatterns.Creational.Infrastructure.Orders;
 using DesignPatterns.Creational.Infrastructure.Orders.Models;
@@ -84,6 +85,13 @@ namespace DesignPatterns.Creational.Controllers
             var clonedOrder = order.Clone();
 
             return Ok(clonedOrder);
+        }
+
+        [HttpGet]
+        [Route("singletonExample")]
+        public IActionResult SingletonExample()
+        {
+            return Ok(BusinessHour.GetInstance());
         }
     }
 }
