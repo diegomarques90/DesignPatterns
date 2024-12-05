@@ -40,4 +40,3 @@ namespace DesignPatterns.Infrastructure.Payments
         }
     }
 }
-]
