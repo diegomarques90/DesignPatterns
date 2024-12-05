@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns.Creational.Core.Enums
+﻿namespace DesignPatterns.Core.Enums
 {
     public enum PaymentMethod
     {

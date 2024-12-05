@@ -1,6 +1,6 @@
-﻿using DesignPatterns.Creational.Core.Enums;
+﻿using DesignPatterns.Core.Enums;
 
-namespace DesignPatterns.Creational.Application.Models
+namespace DesignPatterns.Application.Models
 {
     public class PaymentInfoInputModel
     {

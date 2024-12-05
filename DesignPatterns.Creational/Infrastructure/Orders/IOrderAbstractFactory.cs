@@ -1,8 +1,8 @@
-﻿using DesignPatterns.Creational.Core.Enums;
-using DesignPatterns.Creational.Infrastructure.Deliveries;
-using DesignPatterns.Creational.Infrastructure.Payments;
+﻿using DesignPatterns.Core.Enums;
+using DesignPatterns.Infrastructure.Deliveries;
+using DesignPatterns.Infrastructure.Payments;
 
-namespace DesignPatterns.Creational.Infrastructure.Orders
+namespace DesignPatterns.Infrastructure.Orders
 {
     public interface IOrderAbstractFactory
     {

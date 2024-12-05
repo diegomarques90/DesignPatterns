@@ -1,6 +1,6 @@
-﻿using DesignPatterns.Creational.Application.Models;
+﻿using DesignPatterns.Application.Models;
 
-namespace DesignPatterns.Creational.Infrastructure.Payments
+namespace DesignPatterns.Infrastructure.Payments
 {
     public class CreditCardService : IPaymentService
     {

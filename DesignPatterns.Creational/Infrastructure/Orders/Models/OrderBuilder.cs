@@ -1,6 +1,6 @@
-﻿using DesignPatterns.Creational.Application.Models;
+﻿using DesignPatterns.Application.Models;
 
-namespace DesignPatterns.Creational.Infrastructure.Orders.Models
+namespace DesignPatterns.Infrastructure.Orders.Models
 {
     public class OrderBuilder
     {

@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns.Creational.Application.Configuration
+﻿namespace DesignPatterns.Application.Configuration
 {
     public class BusinessHour
     {

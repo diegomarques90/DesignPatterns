@@ -1,10 +1,18 @@
-﻿using DesignPatterns.Creational.Application.Models;
-using DesignPatterns.Creational.Infrastructure.Payments.Models;
+﻿using DesignPatterns.Application.Models;
+using DesignPatterns.Infrastructure.Payments.Adapters;
+using DesignPatterns.Infrastructure.Payments.Models;
 
-namespace DesignPatterns.Creational.Infrastructure.Payments
+namespace DesignPatterns.Infrastructure.Payments
 {
     public class PaymentSlipService : IPaymentService
     {
+        private readonly IExternalPaymentSlipService _externalService;
+
+        public PaymentSlipService(IExternalPaymentSlipService externalService)
+        {
+            _externalService = externalService;
+        }
+
         public object Process(OrderInputModel inputModel)
         {
             //Criação do objeto antes de aplicar o padrão builder
@@ -24,7 +32,12 @@ namespace DesignPatterns.Creational.Infrastructure.Payments
                 .WithDates(DateTime.Now, DateTime.Now.AddDays(3))
                 .Build();
 
+            //Aplicação do padrão Adapter
+            var paymentSlipServiceAdapter = new PaymentSlipServiceAdapter(_externalService);
+            var paymentSlipModel = paymentSlipServiceAdapter.GeneratePaymentSlip(inputModel);
+
             return "Dados do boleto.";
         }
     }
 }
+]

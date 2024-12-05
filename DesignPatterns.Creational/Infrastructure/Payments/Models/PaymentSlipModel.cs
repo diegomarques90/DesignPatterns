@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns.Creational.Infrastructure.Payments.Models
+﻿namespace DesignPatterns.Infrastructure.Payments.Models
 {
     public class PaymentSlipModel
     {

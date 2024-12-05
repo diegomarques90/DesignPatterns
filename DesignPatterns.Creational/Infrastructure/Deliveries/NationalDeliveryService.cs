@@ -1,6 +1,6 @@
-﻿using DesignPatterns.Creational.Application.Models;
+﻿using DesignPatterns.Application.Models;
 
-namespace DesignPatterns.Creational.Infrastructure.Deliveries
+namespace DesignPatterns.Infrastructure.Deliveries
 {
     public class NationalDeliveryService : IDeliveryService
     {

@@ -1,4 +1,4 @@
-﻿namespace DesignPatterns.Creational.Application.Models
+﻿namespace DesignPatterns.Application.Models
 {
     public class CustomerInputModel
     {

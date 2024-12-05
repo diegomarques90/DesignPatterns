@@ -1,6 +1,6 @@
-# Sobre o projeto DesignPatterns.Creational
+# Sobre o projeto DesignPatterns
 O projeto foi criado durante a formação Arquitetura de Software do LuisDev.
-O objetivo do projeto é trazer exemplos práticos da resolução de problemas comuns do desenvolvimento de software com a utilização de Design Patterns do tipo Creational.
+O objetivo do projeto é trazer exemplos práticos da resolução de problemas comuns do desenvolvimento de software com a utilização de Design Patterns.
 
 # O que são Design Patterns - Creational?
 De forma bem resumida, são patterns que lidam com mecanismos de criação de instâncias de objetos.
@@ -8,7 +8,7 @@ O objetivo é melhorar a maneira de criação de instâncias, reduzindo a comple
 Vale salientar que, os problemas é quem guiam a escolha do pattern e nunca o contrário.
 
 # Estrutura do projeto
-No projeto, você encontrará exemplos práticos da utilização dos patterns do tipo Creational para solucionar os problemas hipotéticos.
+No projeto, você encontrará exemplos práticos da utilização dos patterns para solucionar os problemas hipotéticos.
 Logo, cada pattern possuirá um problema a ser resolvido, o qual estará descrito como comentário em cada controller principal e aqui no README.
 
 # Design Pattern - Creational: Factory Method
@@ -22,7 +22,7 @@ Criamos a classe IPaymentServiceFactory contendo o contrato do método GetServic
 Na implementação da classe IPaymentServiceFactory, injetamos os serviços de CreditCardService e PaymentSlipService e de acordo com o tipo da forma de pagamento, retornaremos o serviço correspondente.
 Os dois serviços (CreditCard e PaymentSlip) possuem sua própria interface (IPaymentService) e suas próprias implementações do método Process.
 
-# Design Pattern - Abstract Factory
+# Design Pattern - Creational: Abstract Factory
 Problema Hipotético:
 	Dado que uma Startup de E-Commerce, possui a necessidade de implementar a restrinção do pagamento e envio dependendo da origem da compra (internacional ou local).
 Condicional origem:
@@ -39,7 +39,7 @@ Criamos a classe IOrderAbstractFactory contendo o contrato para dois métodos qu
 Cada serviço que será retornado, possui sua própria interface e implementações separadas, fazendo com que o cliente não possua acesso a implementação.
 Nesta solução estamos utilizando o Abstract Factory para retornar o conjunto de objetos (PaymentService e DeliveryService) e para cada service, temos a implementação do Factory Method.
 
-# Design Pattern - Builder
+# Design Pattern - Creational: Builder
 Problema Hipotético:
 	Dado o fato que a Startup de E-Commerce possui a necessidade da geração de boletos e que cada boleto possuíra suas próprias características, sendo:
 		Nosso número, código do cedente, cedente, pagador, data de vencimento, data de emissão e entre outras;
@@ -49,7 +49,7 @@ O que foi feito para resolver o problema hipotético?
 	Criamos a classe PaymentSlipBuilder e implementamos o padrão builder, criando os métodos que farão o preenchimento das informações por etapas.
 	Em seguida, instânciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
 
-# Design Pattern - Prototype
+# Design Pattern - Creational: Prototype
 Problema Hipotético:
 	Dado o fato que a Startup de E-Commerce possui a necessidade de gerar um novo pedido à partir de um outro pedido já realizado anteriormente.
 
@@ -58,13 +58,25 @@ O que foi feito para resolver o problema hipotético?
 	Utilizo o OrderBuilder para criar um objeto OrderInputModel para poder realizar o clone do objeto chamando o método Clone.
 	Não fiz a implementação da Interface na mão, pois, no c# já temos a disponibilização da interface ICloneable, portanto, para implementar o padrão builder, apenas incluí a herança da interface ICloneable na classe OrderInputModel e implementei a clonagem do objeto no método Clone.
 
-# Design Pattern - Singleton
+# Design Pattern - Creational: Singleton
 Problema Hipotético:
 	Dado que a startup de E-Commerce precise de uma rota para retornar um objeto que possua o horário de funcionamento.
 
 O que foi feito para resolver o problema hipotético?
 	Criamos a classe BusinessHour para armazenar os dados com o horário de funcionamento, também criamos a rota para obter o objeto BusinessHour.
 	Na classe BusinessHour, implementamos o construtor privado e o método GetInstance() para criar o algoritmo que faz a instanciação da classe no padrão singleton, garantindo um ponto de acesso único global e também que apenas uma instância da classe esteja disponível para a aplicação.	
+
+# O que são Design Patterns - Structural?
+Os padrões estruturais se preocupam com a forma como as classes e objetos são compostos para formar estruturas maiores mas ainda mantendo essas estruturas flexíveis e eficientes. 
+Estes padrões estruturais de classes utilizam a herança para compor interfaces ou implementações.
+
+# Design Pattern - Structural: Singleton
+Problema Hipotético:
+	Dado que o serviço de geração de boletos interno passará a receber os dados do boleto de forma externa e o objeto com os dados do boleto não será enviado no formato esperado para a geração interna do boleto.
+
+O que foi feito para resolver o problema hipotético?
+	Para solucionar esse problema, foi aplicado o Adapter para fazer a conversão e tratamento dos dados externos para o PaymentSlipService realizar o processamento do boleto.o padrão singleton, garantindo um ponto de acesso único global e também que apenas uma instância da classe esteja disponível para a aplicação.	
+
 
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.

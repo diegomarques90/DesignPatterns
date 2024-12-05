@@ -1,12 +1,12 @@
-﻿using DesignPatterns.Creational.Application.Configuration;
-using DesignPatterns.Creational.Application.Models;
-using DesignPatterns.Creational.Core.Enums;
-using DesignPatterns.Creational.Infrastructure.Orders;
-using DesignPatterns.Creational.Infrastructure.Orders.Models;
-using DesignPatterns.Creational.Infrastructure.Payments;
+﻿using DesignPatterns.Application.Configuration;
+using DesignPatterns.Application.Models;
+using DesignPatterns.Core.Enums;
+using DesignPatterns.Infrastructure.Orders;
+using DesignPatterns.Infrastructure.Orders.Models;
+using DesignPatterns.Infrastructure.Payments;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DesignPatterns.Creational.Controllers
+namespace DesignPatterns.Controllers
 {
     [Route("api/orders")]
     [ApiController]
