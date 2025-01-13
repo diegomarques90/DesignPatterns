@@ -70,13 +70,20 @@ O que foi feito para resolver o problema hipotético?
 Os padrões estruturais se preocupam com a forma como as classes e objetos são compostos para formar estruturas maiores mas ainda mantendo essas estruturas flexíveis e eficientes. 
 Estes padrões estruturais de classes utilizam a herança para compor interfaces ou implementações.
 
-# Design Pattern - Structural: Singleton
+# Design Pattern - Structural: Adapter
 Problema Hipotético:
 	Dado que o serviço de geração de boletos interno passará a receber os dados do boleto de forma externa e o objeto com os dados do boleto não será enviado no formato esperado para a geração interna do boleto.
 
 O que foi feito para resolver o problema hipotético?
 	Para solucionar esse problema, foi aplicado o Adapter para fazer a conversão e tratamento dos dados externos para o PaymentSlipService realizar o processamento do boleto.o padrão singleton, garantindo um ponto de acesso único global e também que apenas uma instância da classe esteja disponível para a aplicação.	
 
+# Design Pattern - Structural: Decorator
+Problema Hipotético:
+	Dado que o e-commerce precise enviar uma notificação para um software CRM a cada pedido processado contendo os dados da compra, precisaremos implementar o envio sem alterar as implementações de IPaymentService para realizar a chamada.
+
+O que foi feito para resolver o problema hipotético?
+	Imaginando o cenário em que a sincronização com o CRM possua uma interface própria, incluímos a interface ICoreCrmIntegrationService que possui o contrato do método Sync. Criamos a rota processOrderWithSyncToCrm na OrdersController para separar do fluxo padrão as orders que farão o envio para o CRM.
+	Implementamos o decorator PaymentServiceDecorator, o qual herda a interface que vamos extender IPaymentService e na implementação do método Process, fazemos o envio da sincronização com o método Sync do service ICoreCrmIntegrationService, deste modo, conseguimos extender o método Process sem alterar a sua implementação original.
 
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.

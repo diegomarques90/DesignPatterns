@@ -93,5 +93,14 @@ namespace DesignPatterns.Controllers
         {
             return Ok(BusinessHour.GetInstance());
         }
+
+        [HttpPost]
+        [Route("processOrderWithSyncToCrm")]
+        public IActionResult ProcessOrderWithSyncToCrm([FromServices] IPaymentServiceFactory paymentServiceFactory, OrderInputModel model)
+        {
+            var paymentService = paymentServiceFactory.GetService(model.PaymentInfo.PaymentMethod);
+            paymentService.Process(model);
+            return NoContent();
+        }
     }
 }
