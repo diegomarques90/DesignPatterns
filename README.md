@@ -85,6 +85,14 @@ O que foi feito para resolver o problema hipotético?
 	Imaginando o cenário em que a sincronização com o CRM possua uma interface própria, incluímos a interface ICoreCrmIntegrationService que possui o contrato do método Sync. Criamos a rota processOrderWithSyncToCrm na OrdersController para separar do fluxo padrão as orders que farão o envio para o CRM.
 	Implementamos o decorator PaymentServiceDecorator, o qual herda a interface que vamos extender IPaymentService e na implementação do método Process, fazemos o envio da sincronização com o método Sync do service ICoreCrmIntegrationService, deste modo, conseguimos extender o método Process sem alterar a sua implementação original.
 
+# Design Pattern - Structural: Facade
+Problema Hipotético:
+	Dado que o e-commerce precise fazer uma requisição http em uma rota terceira para verificar fraude antes do processamento. O processo para fazer essa requisição é complexo pela quantidade de objetos que precisam ser instânciados e configurados. Como tornar o processo mais simples nas classes clientes?
+
+O que foi feito para resolver o problema hipotético?
+	Para resolver esse problema hipotético, fizemos a implementação do design pattern structural facade, onde criamos a interface IAntiFraudFacade, a qual possui apenas a assinatura do método Check.
+	Levamos para a implementação da interface todo o algorítimo que de fato faz a requisição e retorna o objeto desejado, deste modo, a classe cliente apenas instância a interface e faz a chamada simplificada do método Check;
+
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 

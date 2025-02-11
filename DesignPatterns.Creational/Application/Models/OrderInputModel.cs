@@ -19,6 +19,7 @@
         public PaymentAddressInputModel PaymentAddress { get; set; }
         public PaymentInfoInputModel PaymentInfo { get; set; }
         public bool? IsInternational { get; set; }
+        public decimal TotalPrice => Items.Sum(i => i.Price * i.Quantity);
 
         public object Clone()
         {
