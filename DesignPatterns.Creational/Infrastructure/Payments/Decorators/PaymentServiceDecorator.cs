@@ -11,6 +11,12 @@ namespace DesignPatterns.Infrastructure.Payments.Decorators
         private readonly ICoreCrmIntegrationService _crmService;
         private readonly IAntiFraudFacade _antiFraudFacade;
 
+        public PaymentServiceDecorator(IPaymentService paymentService, ICoreCrmIntegrationService crmService)
+        {
+            _paymentService = paymentService;
+            _crmService = crmService;
+        }
+
         public PaymentServiceDecorator(IPaymentService paymentService, ICoreCrmIntegrationService crmService, IAntiFraudFacade antiFraudFacade)
         {
             _paymentService = paymentService;

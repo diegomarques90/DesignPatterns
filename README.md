@@ -93,6 +93,14 @@ O que foi feito para resolver o problema hipotético?
 	Para resolver esse problema hipotético, fizemos a implementação do design pattern structural facade, onde criamos a interface IAntiFraudFacade, a qual possui apenas a assinatura do método Check.
 	Levamos para a implementação da interface todo o algorítimo que de fato faz a requisição e retorna o objeto desejado, deste modo, a classe cliente apenas instância a interface e faz a chamada simplificada do método Check;
 
+# Design Pattern - Structural: Proxy
+Problema Hipotético:
+	Dado que o e-commerce precise controlar o acesso a lista de clientes bloqueados que é obtida por um repositório e armazenada em um cache. Se implementarmos o controle e cache em cada objeto cliente, vamos gerar códigos duplicados e entre outros problemas.
+
+O que foi feito para resolver o problema hipotético?
+	Para resolver esse problema hipotético, fizemos a implementação do design pattern structural Proxy, onde criamos a classe CustomerRepositoryProxy, a qual herda a interface do objeto original ICustomerRepository.
+	Na classe CustomerRepositoryProxy, implementamos o método do contrato GetBlockedCustomers e fizemos o controle do acesso e controle de cache antes da utilização do repository para obter os clientes bloqueados, deste modo, as classes clientes tem que apenas utilizar a instância do objeto Proxy;
+
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
