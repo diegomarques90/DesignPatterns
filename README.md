@@ -101,6 +101,17 @@ O que foi feito para resolver o problema hipotético?
 	Para resolver esse problema hipotético, fizemos a implementação do design pattern structural Proxy, onde criamos a classe CustomerRepositoryProxy, a qual herda a interface do objeto original ICustomerRepository.
 	Na classe CustomerRepositoryProxy, implementamos o método do contrato GetBlockedCustomers e fizemos o controle do acesso e controle de cache antes da utilização do repository para obter os clientes bloqueados, deste modo, as classes clientes tem que apenas utilizar a instância do objeto Proxy;
 
+# Design Pattern - Structural: Composite
+Problema Hipotético:
+	Dado que você precisa calcular o valor de gastos corporativos em uma estrutura de hierarquia de cargos e funções.
+
+O que foi feito para resolver o problema hipotético?
+	Para resolver esse problema hipotético, fizemos a implementação do pattern Composite.
+	Iniciamos com a implementação da classe abstrata EmployeeComponent que possui as propriedades e métodos comuns da composição. 
+	Em seguida implementamos as classes Employee (Leaf) e ManagerComposite (Composite).A classe Employee possui apenas a implementação do método abstrato que retorna o valor do gasto corporativo. Já a classe ManagerComposite, além de implementar o método abstrato para o cálculo do gasto corporativo, controla a inclusão ou remoção dos filhos.
+	Para finalizar, o uso desta estrutura é realizado na EmployeesController.
+
+
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
