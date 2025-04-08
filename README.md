@@ -111,6 +111,14 @@ O que foi feito para resolver o problema hipotético?
 	Em seguida implementamos as classes Employee (Leaf) e ManagerComposite (Composite).A classe Employee possui apenas a implementação do método abstrato que retorna o valor do gasto corporativo. Já a classe ManagerComposite, além de implementar o método abstrato para o cálculo do gasto corporativo, controla a inclusão ou remoção dos filhos.
 	Para finalizar, o uso desta estrutura é realizado na EmployeesController.
 
+# Design Pattern - Structural: Bridge
+Problema Hipotético:
+	Dado que você precisa retornar o content de páginas web de acordo com o tema e que não precisa para cada tema novo crescer a implementação de forma exponencial.
+	
+O que foi feito para resolver o problema hipotético?
+	Implementamos o pattern Brigde, onde na prática criamos duas interfaces uma para o tema e a outra para as páginas. A utilização das mesmas foi criada na controller PageThemesController. 
+
+
 
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
@@ -119,3 +127,4 @@ Os códigos implementados não possuem a injeção de dependência correta nos p
 Curso: Formação arquitetura de software - LuisDev.
 Livro: Padrões de projeto - Soluções reutilizáveis de software orientado a objetos;
 Artigos: Refactoring Guru - https://refactoring.guru/pt-br/design-patterns
+Repositórios: https://github.com/design-patterns-for-humans/brazilian-portuguese
