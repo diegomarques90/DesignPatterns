@@ -123,7 +123,9 @@ Problema Hipotético:
 	Dado que na aplicação seja necessário retornar um objeto que contém dados a respeito de formas de pagamento de um pedido.
 	
 O que foi feito para resolver o problema hipotético?
-	
+	Implementamos o pattern Flyweight, onde na prática criamos a interface da fábrica (IPaymentMethodsFactory) e também fizemos a implementação concreta da fábrica (PaymentMethodsFactory). A fábrica é classe responsável por gerenciar as formas de pagamento via Dictionary.
+	Na controller PaymentMethodsController, foram implementadas duas rotas GET, uma sem a implamentação do pattern e a outra com a implementação do pattern.
+	Também utilizamos o escopo singleton para deixar a fábrica em uma única instância.
 
 
 # Observações Gerais
