@@ -118,6 +118,12 @@ Problema Hipotético:
 O que foi feito para resolver o problema hipotético?
 	Implementamos o pattern Brigde, onde na prática criamos duas interfaces uma para o tema e a outra para as páginas. A utilização das mesmas foi criada na controller PageThemesController. 
 
+# Design Pattern - Structural: Flyweight
+Problema Hipotético:
+	Dado que na aplicação seja necessário retornar um objeto que contém dados a respeito de formas de pagamento de um pedido.
+	
+O que foi feito para resolver o problema hipotético?
+	
 
 
 # Observações Gerais

@@ -1,7 +1,7 @@
 ﻿using DesignPatterns.Application.Models;
 using DesignPatterns.Infrastructure.Payments.Models;
 
-namespace DesignPatterns.Infrastructure.Payments
+namespace DesignPatterns.Infrastructure.Payments.Interfaces
 {
     public interface IExternalPaymentSlipService
     {

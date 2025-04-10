@@ -1,5 +1,6 @@
 ﻿using DesignPatterns.Application.Models;
 using DesignPatterns.Infrastructure.Integrations;
+using DesignPatterns.Infrastructure.Payments.Interfaces;
 using Newtonsoft.Json;
 using System.Text;
 

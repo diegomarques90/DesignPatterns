@@ -1,6 +1,6 @@
 ﻿using DesignPatterns.Core.Enums;
 
-namespace DesignPatterns.Infrastructure.Payments
+namespace DesignPatterns.Infrastructure.Payments.Interfaces
 {
     public interface IPaymentServiceFactory
     {

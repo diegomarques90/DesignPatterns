@@ -1,6 +1,6 @@
 ﻿using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Deliveries;
-using DesignPatterns.Infrastructure.Payments;
+using DesignPatterns.Infrastructure.Payments.Interfaces;
 
 namespace DesignPatterns.Infrastructure.Orders
 {

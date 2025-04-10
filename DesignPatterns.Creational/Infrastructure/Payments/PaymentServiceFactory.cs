@@ -1,6 +1,7 @@
 ﻿using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Integrations;
 using DesignPatterns.Infrastructure.Payments.Decorators;
+using DesignPatterns.Infrastructure.Payments.Interfaces;
 
 namespace DesignPatterns.Infrastructure.Payments
 {

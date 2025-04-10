@@ -1,3 +1,4 @@
+using DesignPatterns.Infrastructure.Payments;
 using DesignPatterns.Infrastructure.Proxies;
 using DesignPatterns.Infrastructure.Repositories;
 
@@ -8,6 +9,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<CustomerRepositoryProxy>();
+builder.Services.AddSingleton<PaymentMethodsFactory>();
 
 
 builder.Services.AddControllers();

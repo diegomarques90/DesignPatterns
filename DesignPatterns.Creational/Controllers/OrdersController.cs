@@ -3,7 +3,7 @@ using DesignPatterns.Application.Models;
 using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Orders;
 using DesignPatterns.Infrastructure.Orders.Models;
-using DesignPatterns.Infrastructure.Payments;
+using DesignPatterns.Infrastructure.Payments.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesignPatterns.Controllers
