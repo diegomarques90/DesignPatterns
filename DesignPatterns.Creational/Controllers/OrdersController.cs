@@ -1,9 +1,12 @@
-﻿using DesignPatterns.Application.Configuration;
+﻿using DesignPatterns.Application.ChainOfResponsibility;
+using DesignPatterns.Application.Configuration;
 using DesignPatterns.Application.Models;
 using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Orders;
 using DesignPatterns.Infrastructure.Orders.Models;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
+using DesignPatterns.Infrastructure.Products;
+using DesignPatterns.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesignPatterns.Controllers
@@ -100,6 +103,50 @@ namespace DesignPatterns.Controllers
         {
             var paymentService = paymentServiceFactory.GetService(model.PaymentInfo.PaymentMethod);
             paymentService.Process(model);
+            return NoContent();
+        }
+
+        [HttpPost]
+        [Route("not-using-chain")]
+        public IActionResult NotUsingCoR(OrderInputModel model, [FromServices] IProductRepository productRepository, [FromServices] IPaymentFraudCheckService fraudCheckService, [FromServices] ICustomerRepository customerRepository)
+        {
+            var itemsDictionary = model.Items.ToDictionary(d => d.ProductId, d => d.Quantity);
+            var hasStock = productRepository.HasStock(itemsDictionary);
+
+            if (!hasStock)
+                return BadRequest();
+
+            var customer = customerRepository.GetCustomerById(model.Customer.Id);
+            var customerAllowedToBuy = customer.IsAllowedToBuy();
+
+            if (!customerAllowedToBuy)
+                return BadRequest();
+
+            var isFraud = fraudCheckService.IsFraud(model);
+
+            if (isFraud)
+                return BadRequest();
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        [Route("using-chain")]
+        public IActionResult UsingCoR(OrderInputModel model, [FromServices] IProductRepository productRepository, [FromServices] IPaymentFraudCheckService fraudCheckService, [FromServices] ICustomerRepository customerRepository)
+        {
+            var validateStockHandler = new ValidateStockHandler(productRepository);
+            var validadeCustomerHandler = new ValidateCustomerHandler(customerRepository);
+            var checkForFraudHandler = new CheckForFraudHandler(fraudCheckService);
+
+            validateStockHandler
+                .SetNext(validadeCustomerHandler)
+                .SetNext(checkForFraudHandler);
+
+            bool success = validateStockHandler.Handle(model);
+
+            if (!success)
+                return BadRequest();
+
             return NoContent();
         }
     }

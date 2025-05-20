@@ -127,6 +127,27 @@ O que foi feito para resolver o problema hipotético?
 	Na controller PaymentMethodsController, foram implementadas duas rotas GET, uma sem a implamentação do pattern e a outra com a implementação do pattern.
 	Também utilizamos o escopo singleton para deixar a fábrica em uma única instância.
 
+# O que são Design Patterns - Behavioral?
+São design patterns que lidam com a comunicação e comportamento de uma classe em relação a outra. Eles não descrevem apenas padrões de objetos ou classes, mas também os padrões de comunicação entre eles.
+
+# Design Pattern - Behavioral: Chain of Responsibility (CoR)
+Problema Hipotético:
+	Imagina um e-comerce que ao receber um pedido deve-se validar:
+		- Os itens do pedido possuem estoque?
+		- O cliente está com o cadastro em dia e com permissão para fazer pedidos?
+		- O pedido é uma fraude?
+	Deste modo, existem várias etapas de verificação que podem fazer com o que o pedido não seja aprovado e na medida em que novas validações sejam incluídas ou novas etapas, o código poderá crescer de forma desorganizada e aumentar a complexidade.
+	
+O que foi feito para resolver o problema hipotético?
+	Implementamos o pattern CoR, onde na prática criamos a interface IOrderHandler que possui apenas dois métodos no contrato, sendo:
+	- bool Handle(): Responsável pela implementação da regra de negócio; e
+	- IOrderHandler SetNext(IOrderHandler nextHandler), responsável pela definição do próximo handler da corrente;
+	As mecânicas desta interface foram implementadas em uma classe base abstrata (OrderHandlerBase), deste modo, as implementações concretas de cada elo da corrente puderam fazer a sobreposição do método Handle e aplicar a sua própria validação.
+	As implementações concretas foram:
+	- ValidateStockHandler;
+	- ValidateCustomerHandler;
+	- ValidateForFraudHandler;
+	A classe cliente deste pattern é a OrdersController, onde disponibilizei uma rota com o exemplo sem o pattern ("not-using-chain) e outra rota com o exemplo utilizando o pattern ("using-chain").
 
 # Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
