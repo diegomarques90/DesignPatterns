@@ -1,17 +1,19 @@
 # Sobre o projeto DesignPatterns
 O projeto foi criado durante a formação Arquitetura de Software do LuisDev.
 O objetivo do projeto é trazer exemplos práticos da resolução de problemas comuns do desenvolvimento de software com a utilização de Design Patterns.
----
+
 ## Estrutura do projeto
 No projeto, você encontrará exemplos práticos da utilização dos patterns para solucionar os problemas hipotéticos.
 Logo, cada pattern possuirá um problema a ser resolvido, o qual estará descrito como comentário em cada controller principal e aqui no README.
----
+
+# Estrutura do projeto
+No projeto, você encontrará exemplos práticos da utilização dos patterns para solucionar os problemas hipotéticos.
+Logo, cada pattern possuirá um problema a ser resolvido, o qual estará descrito como comentário em cada controller principal e aqui no README.
 
 ## O que são Design Patterns - Creational?
 De forma bem resumida, são patterns que lidam com mecanismos de criação de instâncias de objetos.
 O objetivo é melhorar a maneira de criação de instâncias, reduzindo a complexidade envolvida.
 Vale salientar que, os problemas é quem guiam a escolha do pattern e nunca o contrário.
-
 
 ## Design Pattern - Creational: Factory Method
 ** Problema hipotético:**
@@ -71,7 +73,6 @@ Dado que a startup de E-Commerce precise de uma rota para retornar um objeto que
 **O que foi feito para resolver o problema hipotético?**
 Criamos a classe BusinessHour para armazenar os dados com o horário de funcionamento, também criamos a rota para obter o objeto BusinessHour.
 Na classe BusinessHour, implementamos o construtor privado e o método GetInstance() para criar o algoritmo que faz a instanciação da classe no padrão singleton, garantindo um ponto de acesso único global e também que apenas uma instância da classe esteja disponível para a aplicação.	
----
 
 ## O que são Design Patterns - Structural?
 Os padrões estruturais se preocupam com a forma como as classes e objetos são compostos para formar estruturas maiores mas ainda mantendo essas estruturas flexíveis e eficientes. 
@@ -155,12 +156,11 @@ As implementações concretas foram:
 * ValidateCustomerHandler;
 * ValidateForFraudHandler;
 A classe cliente deste pattern é a OrdersController, onde disponibilizei uma rota com o exemplo sem o pattern ("not-using-chain) e outra rota com o exemplo utilizando o pattern ("using-chain").
----
 
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
-##Fontes
+## Fontes
 * **Curso:** Formação arquitetura de software - LuisDev.
 * **Livro:** Padrões de projeto - Soluções reutilizáveis de software orientado a objetos;
 * **Artigos:** Refactoring Guru - https://refactoring.guru/pt-br/design-patterns
