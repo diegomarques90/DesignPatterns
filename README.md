@@ -164,11 +164,22 @@ Uma das soluções simples para encapsular os parâmetros de entrada é a criaç
 Podemos utilizar o padrão Command para resolver esse problema.
 		
 **O que foi feito para resolver o problema hipotético?**
-Implementamos o método POST PostUsingCommand, que basicamente substitui a criação de um objeto genérico para um objeto do tipo FraudCheckModel. 
+Implementamos a rota POST PostUsingCommand na OrdersController, que basicamente substitui a criação de um objeto genérico para um objeto do tipo FraudCheckModel. 
 Também implementamos o método IsFraudV2UsingCommand, o qual recebe como parâmetro de entrada o objeto FraudCheckModel e ao utilizar esse método para verificar se é uma fraude, já temos o objeto FraudCheckModel instânciado na variável command.
 Após a verificação da fraude não precisaremos criar objetos genéricos, pois, já temos o objeto instânciado pela variável command e isso facilitará o repasse do objeto para outros serviços ou métodos, como por exemplo:
 *Serviços de mensaria; e
 *Guarda de logs.
+
+## Desing Pattern - Behavioral: Iterator
+**Problema Hipotético:**
+Imagine que no e-commerce precisaremos percorrer uma lista de clientes bloqueados e realizar certa ação, como por exemplo notificá-los por e-mail. Porém, para isso, não podemos expor a estrutura interna de um modelo que já estamos utilizando.
+No exemplo, estamos utilizando um dicionário para armazenar os clientes e seus e-mails.
+
+**O que foi feito para resolver o problema hipotético?**
+Implementamos a rota "report-notify-blocked-customers" na CustomersController, onde instanciamos uma nova coleção de dados (Dictionary<string, string>), a qual armazenamos o FullName e o Email do customer.
+Note que não é a classe cliente (CustomersController) que é responsável por criar a coleção ou saber detalhes da implementação de como a coleção é iterada. A criação e iteração da coleção é realizada pela classe CustomersToNotifyQueryModel.
+Já no construtor, recebemos a lista de customers e uma string para informar quem criou a coleção. Para fazer as iterações extendemos a classe com a implementação da Interface IEnumerable<KeyValuePair<string, string>>.
+Em resumo, a classe cliente consegue instânciar a coleção e utilizá-la percorrendo-a (foreach) ou acessando o item da coleção diretamente e tudo isso sem saber os detalhes da implementação de como a coleção é criada e iterada.
 
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.

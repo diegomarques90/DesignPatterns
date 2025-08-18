@@ -1,4 +1,6 @@
-﻿using DesignPatterns.Infrastructure.Proxies;
+﻿using DesignPatterns.Application.Models;
+using DesignPatterns.Infrastructure.Proxies;
+using DesignPatterns.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesignPatterns.Controllers
@@ -16,6 +18,23 @@ namespace DesignPatterns.Controllers
                 return Unauthorized();
 
             return Ok(blockedCustomers);
+        }
+
+        [HttpGet("report-notify-blocked-customers")]
+        public IActionResult NotifyBlockedCustomerEmail([FromServices] ICustomerRepository repository)
+        {
+            var blockedCustomers = repository.GetBlockedCustomers();
+
+            var query = new CustomersToNotifyQueryModel(blockedCustomers, "DiegoAdm");
+
+            foreach (var customer in query)
+            {
+                Console.WriteLine($"Customer: {customer.Key}, Email: {customer.Value}");
+            }
+
+            Console.WriteLine($"Utilizando acesso direto: {query["Fulano 1"]}");
+
+            return Ok();
         }
     }
 }
