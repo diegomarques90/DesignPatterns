@@ -5,6 +5,7 @@ using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Orders;
 using DesignPatterns.Infrastructure.Orders.Models;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
+using DesignPatterns.Infrastructure.Payments.Models;
 using DesignPatterns.Infrastructure.Products;
 using DesignPatterns.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace DesignPatterns.Controllers
 
         public OrdersController(IPaymentServiceFactory paymentServiceFactory)
         {
-            _paymentServiceFactory = paymentServiceFactory;    
+            _paymentServiceFactory = paymentServiceFactory;
         }
 
         [HttpPost]
@@ -84,7 +85,7 @@ namespace DesignPatterns.Controllers
                 .WithItems()
                 .IsInternational(false)
                 .Build();
-            
+
             var clonedOrder = order.Clone();
 
             return Ok(clonedOrder);
@@ -148,6 +149,47 @@ namespace DesignPatterns.Controllers
                 return BadRequest();
 
             return NoContent();
+        }
+
+        [HttpPost]
+        public IActionResult PostNotUsingCommand(OrderInputModel model, [FromServices] IPaymentFraudCheckService fraudCheckService)
+        {
+            var total = model.Items.Sum(i => i.Quantity * i.Price);
+            var isFraud = fraudCheckService.IsFraudV2(total, model.Customer.Id, model.Customer.FullName, model.Customer.Document);
+
+            if (isFraud)
+                return BadRequest("Order is fraud");
+
+            var message = new
+            {
+                total,
+                customerId = model.Customer.Id,
+                fullName = model.Customer.FullName,
+                document = model.Customer.Document
+            };
+
+            //Poderia chamar serviço de mensageria para enviar o objeto como JSON
+            //Também poderiamos guardar log desse objeto
+
+            return Ok(message);
+        }
+
+        [HttpPost]
+        public IActionResult PostUsingCommand(OrderInputModel model, [FromServices] IPaymentFraudCheckService fraudCheckService)
+        {
+            var total = model.Items.Sum(i => i.Quantity * i.Price);
+            var command = new FraudCheckModel(total, model.Customer.Id, model.Customer.FullName, model.Customer.Document);
+
+            var isFraud = fraudCheckService.IsFraudV2UsingCommand(command);
+
+            if (isFraud)
+                return BadRequest("Order is fraud");
+
+            //Poderia chamar o serviço de mensageria para enviar o objeto command como JSON
+            //Também poderiamos guardar log desse objeto
+
+            return NoContent();
+
         }
     }
 }

@@ -157,6 +157,19 @@ As implementações concretas foram:
 * ValidateForFraudHandler;
 A classe cliente deste pattern é a OrdersController, onde disponibilizei uma rota com o exemplo sem o pattern ("not-using-chain) e outra rota com o exemplo utilizando o pattern ("using-chain").
 
+## Design Pattern - Behavioral: Command
+**Problema Hipotético:**
+Imagina o cenário em que o e-commerce ao receber um pedido seja necessário verificar se é uma fraude e os parâmetros de entrada devem ser armazenados em um serviço de LOG ou serem enviados para uma fila de mensageria.
+Uma das soluções simples para encapsular os parâmetros de entrada é a criação de um objeto anônimo, mas neste caso correria o risco de ter duplicação de código. 
+Podemos utilizar o padrão Command para resolver esse problema.
+		
+**O que foi feito para resolver o problema hipotético?**
+Implementamos o método POST PostUsingCommand, que basicamente substitui a criação de um objeto genérico para um objeto do tipo FraudCheckModel. 
+Também implementamos o método IsFraudV2UsingCommand, o qual recebe como parâmetro de entrada o objeto FraudCheckModel e ao utilizar esse método para verificar se é uma fraude, já temos o objeto FraudCheckModel instânciado na variável command.
+Após a verificação da fraude não precisaremos criar objetos genéricos, pois, já temos o objeto instânciado pela variável command e isso facilitará o repasse do objeto para outros serviços ou métodos, como por exemplo:
+*Serviços de mensaria; e
+*Guarda de logs.
+
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
