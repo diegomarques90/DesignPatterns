@@ -33,7 +33,7 @@ Condicional origem:
 	* Internacional: O pagamento deverá ser realizado apenas por cartão de crédito;
 	* Local: O pagamento poderá ser feito por cartão de crédito, débito ou boleto;
 Cada condicional possuirá maneiras distintas para processar o envio.
-A ideia consiste em implementar o Abstract Factory para realizar a implementação e instânciação de um conjunto de objetos, que neste problema são:
+A ideia consiste em implementar o Abstract Factory para realizar a implementação e instanciação de um conjunto de objetos, que neste problema são:
 	* Objeto do Serviço de Pagamentos;
 	* Objeto do Serviço de Envio;
 
@@ -55,7 +55,7 @@ A construção deste objeto Boleto, possui bastantes condicionais e variações,
 		
 **O que foi feito para resolver o problema hipotético?**
 Criamos a classe PaymentSlipBuilder e implementamos o padrão builder, criando os métodos que farão o preenchimento das informações por etapas.
-Em seguida, instânciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
+Em seguida, instanciamos a classe PaymentSlipBuilder no serviço de geração dos boletos e contruímos o objeto de boleto de acordo com a necessidade, chamando as etapas.
 
 ## Design Pattern - Creational: Prototype
 **Problema Hipotético:**
@@ -95,7 +95,7 @@ Implementamos o decorator PaymentServiceDecorator, o qual herda a interface que 
 
 ## Design Pattern - Structural: Facade
 **Problema Hipotético:**
-Dado que o e-commerce precise fazer uma requisição http em uma rota terceira para verificar fraude antes do processamento. O processo para fazer essa requisição é complexo pela quantidade de objetos que precisam ser instânciados e configurados. Como tornar o processo mais simples nas classes clientes?
+Dado que o e-commerce precise fazer uma requisição http em uma rota terceira para verificar fraude antes do processamento. O processo para fazer essa requisição é complexo pela quantidade de objetos que precisam ser instanciados e configurados. Como tornar o processo mais simples nas classes clientes?
 
 **O que foi feito para resolver o problema hipotético?**
 Para resolver esse problema hipotético, fizemos a implementação do design pattern structural facade, onde criamos a interface IAntiFraudFacade, a qual possui apenas a assinatura do método Check.
@@ -165,8 +165,8 @@ Podemos utilizar o padrão Command para resolver esse problema.
 		
 **O que foi feito para resolver o problema hipotético?**
 Implementamos a rota POST PostUsingCommand na OrdersController, que basicamente substitui a criação de um objeto genérico para um objeto do tipo FraudCheckModel. 
-Também implementamos o método IsFraudV2UsingCommand, o qual recebe como parâmetro de entrada o objeto FraudCheckModel e ao utilizar esse método para verificar se é uma fraude, já temos o objeto FraudCheckModel instânciado na variável command.
-Após a verificação da fraude não precisaremos criar objetos genéricos, pois, já temos o objeto instânciado pela variável command e isso facilitará o repasse do objeto para outros serviços ou métodos, como por exemplo:
+Também implementamos o método IsFraudV2UsingCommand, o qual recebe como parâmetro de entrada o objeto FraudCheckModel e ao utilizar esse método para verificar se é uma fraude, já temos o objeto FraudCheckModel instanciado na variável command.
+Após a verificação da fraude não precisaremos criar objetos genéricos, pois, já temos o objeto instanciado pela variável command e isso facilitará o repasse do objeto para outros serviços ou métodos, como por exemplo:
 *Serviços de mensaria; e
 *Guarda de logs.
 
@@ -179,7 +179,15 @@ No exemplo, estamos utilizando um dicionário para armazenar os clientes e seus 
 Implementamos a rota "report-notify-blocked-customers" na CustomersController, onde instanciamos uma nova coleção de dados (Dictionary<string, string>), a qual armazenamos o FullName e o Email do customer.
 Note que não é a classe cliente (CustomersController) que é responsável por criar a coleção ou saber detalhes da implementação de como a coleção é iterada. A criação e iteração da coleção é realizada pela classe CustomersToNotifyQueryModel.
 Já no construtor, recebemos a lista de customers e uma string para informar quem criou a coleção. Para fazer as iterações extendemos a classe com a implementação da Interface IEnumerable<KeyValuePair<string, string>>.
-Em resumo, a classe cliente consegue instânciar a coleção e utilizá-la percorrendo-a (foreach) ou acessando o item da coleção diretamente e tudo isso sem saber os detalhes da implementação de como a coleção é criada e iterada.
+Em resumo, a classe cliente consegue instanciar a coleção e utilizá-la percorrendo-a (foreach) ou acessando o item da coleção diretamente e tudo isso sem saber os detalhes da implementação de como a coleção é criada e iterada.
+
+## Desing Pattern - Behavioral: Mediator
+**Problema Hipotético:**
+Imagine que estamos desenvolvendo controllers utilizando a arquitetura CQRS e neste caso, cada controller precisará saber quais queries e handlers instanciar gerando comunicações diretas.
+Na medida que mais controllers forem criadas o código se tornará repetitivo em sua estrutura, para melhorar esse cenário é possível implementar o pattern Mediator.
+
+**O que foi feito para resolver o problema hipotético?**
+Implementamos o patter Mediator através da interface ICqrsMediator e deixamos o exemplo de utilização pela ProductsController, a qual, possui os exemplos para obter produtos e obter produto por id com e sem o pattern Mediator.
 
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.

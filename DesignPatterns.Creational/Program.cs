@@ -1,3 +1,4 @@
+using DesignPatterns.Application.Mediator;
 using DesignPatterns.Infrastructure.Integrations;
 using DesignPatterns.Infrastructure.Payments;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
@@ -20,6 +21,7 @@ builder.Services.AddTransient<IProductRepository, ProductyRepository>();
 builder.Services.AddTransient<IPaymentFraudCheckService, PaymentFraudCheckService>();
 builder.Services.AddScoped<CustomerRepositoryProxy>();
 builder.Services.AddSingleton<PaymentMethodsFactory>();
+builder.Services.AddTransient<ICqrsMediator, CqrsMediator>();
 
 
 builder.Services.AddControllers();
