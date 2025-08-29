@@ -151,7 +151,7 @@ namespace DesignPatterns.Controllers
             return NoContent();
         }
 
-        [HttpPost]
+        [HttpPost("not-using-command")]
         public IActionResult PostNotUsingCommand(OrderInputModel model, [FromServices] IPaymentFraudCheckService fraudCheckService)
         {
             var total = model.Items.Sum(i => i.Quantity * i.Price);
@@ -174,7 +174,7 @@ namespace DesignPatterns.Controllers
             return Ok(message);
         }
 
-        [HttpPost]
+        [HttpPost("using-command")]
         public IActionResult PostUsingCommand(OrderInputModel model, [FromServices] IPaymentFraudCheckService fraudCheckService)
         {
             var total = model.Items.Sum(i => i.Quantity * i.Price);

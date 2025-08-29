@@ -8,9 +8,9 @@ namespace DesignPatterns.Infrastructure.Repositories
         {
             return
             [
-                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-20)),
-                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-30)),
-                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-40))
+                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-20), "email@teste.com.br"),
+                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-30), "email@teste.com.br"),
+                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-40), "email@teste.com.br")
             ];
         }
 
@@ -18,9 +18,9 @@ namespace DesignPatterns.Infrastructure.Repositories
         {
             var customers = new List<Customer>
             {
-                new Customer(Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"), "Fulano TESTE", DateTime.Now.AddYears(-20)),
-                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-30)),
-                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-40))
+                new Customer(Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"), "Fulano TESTE", DateTime.Now.AddYears(-20), "email@teste.com.br"),
+                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-30), "email@teste.com.br"),
+                new Customer(Guid.NewGuid(), "Fulano", DateTime.Now.AddYears(-40), "email@teste.com.br")
             };
 
             return customers.FirstOrDefault(c => c.Id == id);

@@ -1,0 +1,38 @@
+﻿namespace DesignPatterns.Application.Mementos
+{
+    public class ShoppingCartCareTaker
+    {
+        public readonly ShoppingCartOriginator _originator;
+        private List<IShoppingCartMemento> _mementos;
+
+        public ShoppingCartCareTaker(ShoppingCartOriginator originator)
+        {
+            _originator = originator;
+            _mementos = new List<IShoppingCartMemento>();
+        }
+
+        public void Backup() 
+        { 
+            _mementos.Add(_originator.SaveSnapShot());
+        }
+
+        public void Undo()
+        {
+            if (_mementos.Count == 0) return;
+
+            var secondToLastMemento = _mementos[^2];
+
+            _originator.Restore(secondToLastMemento);
+        }
+
+        public void PrintHistory()
+        {
+            foreach (var memento in _mementos)
+            {
+                var items = string.Join(' ', memento.Items.Select(i => $"> Item: {i.Key}, Quantity: {i.Value}"));
+
+                Console.WriteLine($"Customer: {memento.CustomerId}, Items: {items}, Saved At: {memento.SavedAt}\n");
+            }
+        }
+    }
+}

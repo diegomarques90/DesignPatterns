@@ -189,6 +189,16 @@ Na medida que mais controllers forem criadas o código se tornará repetitivo em
 **O que foi feito para resolver o problema hipotético?**
 Implementamos o patter Mediator através da interface ICqrsMediator e deixamos o exemplo de utilização pela ProductsController, a qual, possui os exemplos para obter produtos e obter produto por id com e sem o pattern Mediator.
 
+## Desing Pattern - Behavioral: Memento
+**Problema Hipotético:**
+Imagine que precisamos criar um carrinho de compras simples no e-commerce e que seja necessário disponibilizar um registro dos estados anteriores do carrinho e também permitir desfazer operações, além de permitir a restauração de um estado anterior.
+
+**O que foi feito para resolver o problema hipotético?**
+Implementamos o pattern Memento à partir da classe ShoppingCartMemento que será responsável por representar o estado do carrinho de compras em certo momento do tempo.
+Também implementamos a classe ShoppingCartOriginator que será responsável por representar o momento atual do carrinho de compras e também consegue manipular, salvando o momento atual (SaveSnapShot), fazendo o update do carrinho de compras (UpdateCart) e restaurando para algum momento do tempo (Restore).}
+Por fim, implementamos a classe ShoppingCartCareTaker que será responsável pela custódia do Memento.
+Recomendo fazer o post Save da controller ShoppingCartsController e fazer o debug para entender o fluxo de usabilidade do pattern Memento.
+
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
