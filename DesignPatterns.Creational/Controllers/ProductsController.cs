@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DesignPatterns.Application.Queries;
 using DesignPatterns.Application.Mediator;
+using DesignPatterns.Application.Observers;
 
 namespace DesignPatterns.Controllers
 {
@@ -58,6 +59,23 @@ namespace DesignPatterns.Controllers
             var result = await _mediator.Handle(query);
 
             return Ok(result);
+        }
+
+        [HttpGet("deals")]
+        public IActionResult Deals([FromServices] IEnumerable<IDealsObserver> observers, [FromServices] IDealsSubject subject)
+        {
+            foreach(var observer in observers)
+            {
+                subject.Attach(observer);
+            }
+
+            subject.SetDeals(new List<string>
+            {
+                "Xbox Series X - R$ 4.500,00",
+                "Playstation 5 - R$ 4.800,00",
+            });
+
+            return NoContent();
         }
     }
 }

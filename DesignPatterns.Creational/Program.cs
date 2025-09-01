@@ -1,4 +1,5 @@
 using DesignPatterns.Application.Mediator;
+using DesignPatterns.Application.Observers;
 using DesignPatterns.Infrastructure.Integrations;
 using DesignPatterns.Infrastructure.Payments;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
@@ -22,6 +23,9 @@ builder.Services.AddTransient<IPaymentFraudCheckService, PaymentFraudCheckServic
 builder.Services.AddScoped<CustomerRepositoryProxy>();
 builder.Services.AddSingleton<PaymentMethodsFactory>();
 builder.Services.AddTransient<ICqrsMediator, CqrsMediator>();
+builder.Services.AddSingleton<IDealsObserver, MarketingCampaignObserver>();
+builder.Services.AddSingleton<IDealsObserver, WebsiteCatalogObserver>();
+builder.Services.AddSingleton<IDealsSubject, DealsSubject>();
 
 
 builder.Services.AddControllers();

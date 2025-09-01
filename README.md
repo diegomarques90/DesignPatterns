@@ -199,6 +199,15 @@ Também implementamos a classe ShoppingCartOriginator que será responsável por
 Por fim, implementamos a classe ShoppingCartCareTaker que será responsável pela custódia do Memento.
 Recomendo fazer o post Save da controller ShoppingCartsController e fazer o debug para entender o fluxo de usabilidade do pattern Memento.
 
+## Desing Pattern - Behavioral: Observer
+**Problema Hipotético:**
+Imagine que no e-commerce quando a lista de ofertas do dia for alterada, seja necessário notificar os usuários inscritos nas campanhas de marketing e seja necessário notificar outro objeto para atualização do catálogo do site.
+
+**O que foi feito para resolver o problema hipotético?**
+Realizamos a implementação do pattern behavioral observer através das interfaces IDealsSubject e IDealsObserver. Logo em seguida realizamos a implementação concreta do IDealsSubject através da classe DealsSubject.
+A classe DealsSubject contém os métodos necessários para atachar e desatachar os observadores, notificar os observadores e definir a lista de ofertas.
+Já as implementações concretas dos observadores possuem a implementação do método Update, responsável pelo envio das notificações específicas de cada observador.
+
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
