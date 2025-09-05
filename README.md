@@ -208,6 +208,23 @@ Realizamos a implementação do pattern behavioral observer através das interfa
 A classe DealsSubject contém os métodos necessários para atachar e desatachar os observadores, notificar os observadores e definir a lista de ofertas.
 Já as implementações concretas dos observadores possuem a implementação do método Update, responsável pelo envio das notificações específicas de cada observador.
 
+## Desing Pattern - Behavioral: State
+**Problema Hipotético:**
+Imagine que você precisa controlar o estado de documentos, onde, os estados são:
+* Rascunho;
+* Em moderação;
+* Publicado;
+Como fazer esse controle sem os blocos condicionais if ou switch?
+
+**O que foi feito para resolver o problema hipotético?**
+Implementamos o pattern State, utilizando as classes:
+* DocumentStateContext;
+* IDocumentState;
+* DocumentDraftState;
+* DocumentInModerationState;
+* DocumentPublishedState;
+Recomendo fazer o post StatePatternPost da DocumentsController para verificar o pattern State em ação com saídas no console.
+
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 
