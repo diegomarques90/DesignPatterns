@@ -1,11 +1,13 @@
 ﻿using DesignPatterns.Application.ChainOfResponsibility;
 using DesignPatterns.Application.Configuration;
 using DesignPatterns.Application.Models;
+using DesignPatterns.Application.TemplateMethods;
 using DesignPatterns.Core.Enums;
 using DesignPatterns.Infrastructure.Orders;
 using DesignPatterns.Infrastructure.Orders.Models;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
 using DesignPatterns.Infrastructure.Payments.Models;
+using DesignPatterns.Infrastructure.Payments.Strategies;
 using DesignPatterns.Infrastructure.Products;
 using DesignPatterns.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -190,6 +192,30 @@ namespace DesignPatterns.Controllers
 
             return NoContent();
 
+        }
+
+        [HttpPost("payment-using-strategy")]
+        public IActionResult PaymentUsingStrategy(OrderInputModel model, [FromServices] IPaymentContext context, [FromServices] IPaymentStrategyFactory factory)
+        {
+            IPaymentStrategy strategy = factory.GetStrategy(model.PaymentInfo.PaymentMethod);
+
+            var result = context
+                .SetStrategy(strategy)
+                .Process(model);
+
+            return Ok(result);
+        }
+
+        [HttpPost("template-method-with-factory")]
+        public IActionResult TemplateMethodWithFactory(OrderInputModel model, [FromServices] IWarehouseTemplateMethodFactory factory)
+        {
+            var wareHouseService = factory.Create(model);
+
+            wareHouseService.ExtractOrderData();
+            wareHouseService.SeparateStockQuantities();
+            wareHouseService.Notify();
+
+            return NoContent();
         }
     }
 }

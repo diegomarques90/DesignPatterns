@@ -225,6 +225,33 @@ Implementamos o pattern State, utilizando as classes:
 * DocumentPublishedState;
 Recomendo fazer o post StatePatternPost da DocumentsController para verificar o pattern State em ação com saídas no console.
 
+## Desing Pattern - Behavioral: Strategy
+**Problema Hipotético:**
+Imagine que no e-commerce você precisa processar o pagamento de diferentes formas, como por exemplo, boleto ou cartão de crédito. 
+Implementamos o pattern Strategy junto do padrão Factory Method.
+
+**O que foi feito para resolver o problema hipotético?**
+Implementamos a classe context (PaymentContext) que é a implementação concreta da interface IPaymentContext.
+A implementação concreta do context possui os métodos Process e SetStrategy.
+As classes PaymentCreditCardStrategy e PaymentSlipStrategy são as implementações concretas das estratégias e são elas que detém a lógica para o processamento específico do pagamento.
+Para que os clientes destes processamentos não precisem ficar verificando o tipo do pagamento para poder fazer a instância correta da estratégia, implementamos a classe PaymentStrategyFactory, ela é a implementação concreta da interface IPaymentStrategyFactory.
+Essa implementação possui o método GetStrategy, o qual retornará a estratégia correta para o tipo de pagamento informado no OrderInputModel do post PaymentUsingStrategy da classe OrdersController.
+
+## Desing Pattern - Behavioral: Template Method
+**Problema Hipotético:**
+Imagine que após a confirmação de um pedido, precisaremos realizar a separação do estoque no armazém. Serão extraídos dados importantes do pedido, como produto e quantidade, sendo então separados por estoque próprio ou externo.
+Após isso precisaremos notificar outros componentes que podem ter interesse nessa informação. No final, teremos três operações, sendo:
+* Extração de dados;
+* Separação de estoque;
+* Notificação;
+Como estruturar isso evitando a complexidade e duplicação de código?
+
+**O que foi feito para resolver o problema hipotético?**
+Realizamos a implementação do pattern utilizando a classe abstrata WarehouseTemplateMethod, que por sua vez, foi utilizada por herança nas classes concretas WarehouseExternalService e WarehouseInternalService.
+Como a criação da instância estava condicionada pela propriedade booleana IsExternal do OrderInputModel, aproveitamos para implementar outro pattern, o Factory Method.
+O Factory Method foi implementado pela interface IWarehouseTemplateMethodFactory e sua representação concreta WarehouseTemplateMethodFactory.
+O pattern Template Method foi utilizado na rota POST TemplateMethodWithFactory da controller OrdersController.
+
 ## Observações Gerais
 Os códigos implementados não possuem a injeção de dependência correta nos padrões do .NET 8, o intuíto do projeto é mostrar a implementação dos Design Patterns de forma mais simplificada e objetiva.
 

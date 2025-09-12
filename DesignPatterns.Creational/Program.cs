@@ -1,8 +1,10 @@
 using DesignPatterns.Application.Mediator;
 using DesignPatterns.Application.Observers;
+using DesignPatterns.Application.TemplateMethods;
 using DesignPatterns.Infrastructure.Integrations;
 using DesignPatterns.Infrastructure.Payments;
 using DesignPatterns.Infrastructure.Payments.Interfaces;
+using DesignPatterns.Infrastructure.Payments.Strategies;
 using DesignPatterns.Infrastructure.Products;
 using DesignPatterns.Infrastructure.Proxies;
 using DesignPatterns.Infrastructure.Repositories;
@@ -26,7 +28,9 @@ builder.Services.AddTransient<ICqrsMediator, CqrsMediator>();
 builder.Services.AddSingleton<IDealsObserver, MarketingCampaignObserver>();
 builder.Services.AddSingleton<IDealsObserver, WebsiteCatalogObserver>();
 builder.Services.AddSingleton<IDealsSubject, DealsSubject>();
-
+builder.Services.AddTransient<IPaymentContext, PaymentContext>();
+builder.Services.AddTransient<IPaymentStrategyFactory, PaymentStrategyFactory>();
+builder.Services.AddTransient<IWarehouseTemplateMethodFactory, WarehouseTemplateMethodFactory>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

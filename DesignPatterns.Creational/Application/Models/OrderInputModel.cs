@@ -20,6 +20,7 @@
         public PaymentInfoInputModel PaymentInfo { get; set; }
         public bool? IsInternational { get; set; }
         public decimal TotalPrice => Items.Sum(i => i.Price * i.Quantity);
+        public bool IsExternal { get; set; }
 
         public object Clone()
         {
@@ -31,7 +32,8 @@
                 DeliveryAddress = DeliveryAddress,
                 PaymentAddress = PaymentAddress,
                 PaymentInfo = PaymentInfo,
-                IsInternational = IsInternational
+                IsInternational = IsInternational,
+                IsExternal = IsExternal
             };
         }
     }
